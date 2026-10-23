@@ -1,4 +1,4 @@
-const CACHE='fw-pub-v24';
+const CACHE='fw-pub-v25';
 // v13: novas versões entram na hora (skipWaiting + clients.claim) e a página nunca vem do cache HTTP velho (no-store)
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','./index.html','./manifest.webmanifest','./icon.svg'].map(u=>new Request(u,{cache:'reload'})))).catch(()=>{}));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
